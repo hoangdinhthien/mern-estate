@@ -15,6 +15,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // creates a shallow copy of the current formData object to avoid directly mutating the state.
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -22,6 +23,7 @@ export default function SignIn() {
     });
   };
 
+  // submit form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -55,6 +57,7 @@ export default function SignIn() {
         onSubmit={handleSubmit}
         className='flex flex-col gap-4'
       >
+        {/* email input */}
         <input
           type='email'
           placeholder='Email'
@@ -62,6 +65,7 @@ export default function SignIn() {
           id='email'
           onChange={handleChange}
         />
+        {/* password input  */}
         <input
           type='password'
           placeholder='Password'
@@ -69,15 +73,18 @@ export default function SignIn() {
           id='password'
           onChange={handleChange}
         />
+        {/* sign in button */}
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        {/* sign in with google button|link */}
         <OAuth />
       </form>
 
+      {/* don't have account and sign up button wrapper */}
       <div className='flex gap-2 mt-5'>
         <p className=''>Don&apos;t have an account?</p>
         <Link to={'/sign-up'}>
@@ -85,6 +92,7 @@ export default function SignIn() {
         </Link>
       </div>
 
+      {/* show error */}
       {error && <p className='text-red-500 mt-5 text-center'>{error}</p>}
     </div>
   );

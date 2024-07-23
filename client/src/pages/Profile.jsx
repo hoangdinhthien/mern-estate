@@ -31,12 +31,14 @@ export default function Profile() {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
 
+  // When file changes (and is not undefined), the useEffect hook triggers handleFileUpload to upload the file.
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
     }
   }, [file]);
 
+  // upload profile image function
   const handleFileUpload = (file) => {
     if (file.size > 2 * 1024 * 1024) {
       setFileUploadError(true);
@@ -69,10 +71,12 @@ export default function Profile() {
     );
   };
 
+  // update user profile info || creates a shallow copy of the current formData object to avoid directly mutating the state.
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  // submit form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -96,6 +100,7 @@ export default function Profile() {
     }
   };
 
+  // delete user function
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
@@ -113,6 +118,7 @@ export default function Profile() {
     }
   };
 
+  // sign out function
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
@@ -136,6 +142,7 @@ export default function Profile() {
         onSubmit={handleSubmit}
         className='flex flex-col gap-4'
       >
+        {/* profile image input */}
         <input
           onChange={(e) => setFile(e.target.files[0])}
           type='file'
@@ -143,6 +150,7 @@ export default function Profile() {
           hidden
           accept='image/*'
         />
+        {/* profile image */}
         <img
           onClick={() => fileRef.current.click()}
           src={formData.avatar || currentUser.avatar}
@@ -150,6 +158,8 @@ export default function Profile() {
           alt='profile-img'
           className='rounded-full h-24 object-cover cursor-pointer self-center mt-2'
         />
+
+        {/* upload image status (fail and success)*/}
         <p className='self-center text-sm'>
           {fileUploadError ? (
             <span className='text-red-700'>
@@ -167,6 +177,8 @@ export default function Profile() {
             ''
           )}
         </p>
+
+        {/* username input */}
         <input
           id='username'
           type='text'
@@ -175,6 +187,7 @@ export default function Profile() {
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
+        {/* email input */}
         <input
           id='email'
           type='email'
@@ -183,6 +196,7 @@ export default function Profile() {
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
+        {/* password input */}
         <input
           id='password'
           type='password'
@@ -190,12 +204,16 @@ export default function Profile() {
           className='border p-3 rounded-lg'
           onChange={handleChange}
         />
+
+        {/* update button */}
         <button
           disabled={loading}
           className='bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'loading...' : 'update'}
         </button>
+
+        {/* create listing button/link  */}
         <Link
           to={'/create-listing'}
           className='bg-green-700 text-white rounded-lg p-3 uppercase hover:opacity-95 text-center'
@@ -204,6 +222,7 @@ export default function Profile() {
         </Link>
       </form>
 
+      {/* delete and sign out wrapper */}
       <div className='flex justify-between mt-4'>
         <span
           onClick={handleDeleteUser}
@@ -219,7 +238,10 @@ export default function Profile() {
         </span>
       </div>
 
+      {/* show update status error */}
       <p className='text-red-500 mt-5 text-center'>{error ? error : ''}</p>
+
+      {/* show update status success */}
       <p className='text-green-500 mt-5 text-center'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
