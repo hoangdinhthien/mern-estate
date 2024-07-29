@@ -10,6 +10,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    // sign in
     signInStart: (state) => {
       state.loading = true;
     },
@@ -22,6 +23,8 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+
+    // update user
     updateUserStart: (state) => {
       state.loading = true;
     },
@@ -35,6 +38,7 @@ export const userSlice = createSlice({
       state.loading = false;
     },
 
+    // delete user
     deleteUserStart: (state) => {
       state.loading = true;
     },
@@ -48,6 +52,7 @@ export const userSlice = createSlice({
       state.loading = false;
     },
 
+    // sign out user
     signOutUserStart: (state) => {
       state.loading = true;
     },

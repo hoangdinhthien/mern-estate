@@ -23,7 +23,7 @@ export default function SignIn() {
     });
   };
 
-  // submit form function
+  // submit form function || fetch api
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

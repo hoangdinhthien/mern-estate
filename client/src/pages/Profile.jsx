@@ -136,6 +136,7 @@ export default function Profile() {
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
+      {/* page title */}
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
 
       <form
@@ -161,6 +162,9 @@ export default function Profile() {
 
         {/* upload image status (fail and success)*/}
         <p className='self-center text-sm'>
+          {/* if upload got error => render error
+              if upload success => render success
+          */}
           {fileUploadError ? (
             <span className='text-red-700'>
               ERROR IMAGE UPLOAD !!! (IMAGE MUST BE LESS THEN 2MB)
@@ -224,12 +228,15 @@ export default function Profile() {
 
       {/* delete and sign out wrapper */}
       <div className='flex justify-between mt-4'>
+        {/* delete button */}
         <span
           onClick={handleDeleteUser}
           className='text-red-700 cursor-pointer'
         >
           Delete account
         </span>
+
+        {/* sign out button */}
         <span
           onClick={handleSignOut}
           className='text-red-700 cursor-pointer'

@@ -65,6 +65,7 @@ export default function CreateListing() {
     }
   };
 
+  // store upload image function
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
@@ -91,6 +92,7 @@ export default function CreateListing() {
     });
   };
 
+  // delete image function
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
@@ -98,30 +100,37 @@ export default function CreateListing() {
     });
   };
 
+  // change/update data function
   const handleChange = (e) => {
+    // you can only check 1 checkbox sale or rent, cannot check both
     if (e.target.id === 'sale' || e.target.id === 'rent') {
+      // update the form
       setFormData({
         ...formData,
         type: e.target.id,
       });
     }
 
+    // If the checkbox with id="parking" || "furnished" || "offer" is checked or unchecked, formData.parking || formData.furnished || formData.offer will be set to true or false respectively.
     if (
       e.target.id === 'parking' ||
       e.target.id === 'furnished' ||
       e.target.id === 'offer'
     ) {
+      // update the form data
       setFormData({
         ...formData,
         [e.target.id]: e.target.checked,
       });
     }
 
+    // the rest
     if (
       e.target.type === 'number' ||
       e.target.type === 'text' ||
       e.target.type === 'textarea'
     ) {
+      // update the form
       setFormData({
         ...formData,
         [e.target.id]: e.target.value,
@@ -129,17 +138,19 @@ export default function CreateListing() {
     }
   };
 
+  // submit form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (formData.imageUrls.length < 1)
         return setError('You must upload at least one image!!!');
 
+      // +formData.regularPrice => convert value to number
       if (+formData.regularPrice < +formData.discountPrice)
         return setError('Discount price must be lower than regular price!!!');
       setLoading(true);
       setError(false);
+      // fetch api || Make a POST request to the specified API endpoint
       const res = await fetch('api/listing/create', {
         method: 'POST',
         headers: {
@@ -150,6 +161,7 @@ export default function CreateListing() {
           userRef: currentUser._id,
         }),
       });
+      // Parse the JSON response body
       const data = await res.json(res);
       setLoading(false);
 
@@ -401,7 +413,7 @@ export default function CreateListing() {
                 </button>
               </div>
             ))}
-          {/* show error to upload at least 1 image and error for price*/}
+          {/* show error to upload at least 1 image and error for discount price must be lower than regular price*/}
           {error && <p className='text-red-700 text-sm text-center'>{error}</p>}
         </div>
       </form>

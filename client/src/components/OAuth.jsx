@@ -34,6 +34,7 @@ export default function OAuth() {
       console.error(`COULD NOT SIGN IN WITH GOOGLE`, error);
     }
   };
+
   return (
     <button
       type='button'
