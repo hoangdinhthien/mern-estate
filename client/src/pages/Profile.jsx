@@ -304,6 +304,7 @@ export default function Profile() {
         {showListingsError ? 'Error showing listings' : ''}
       </p>
 
+      {/* show all listings */}
       {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
           <h1 className='text-center mt-7 text-2xl font-semibold'>
@@ -314,6 +315,7 @@ export default function Profile() {
               className='border rounded-lg p-3 flex justify-between items-center gap-4'
               key={listing._id}
             >
+              {/* listing image */}
               <Link to={`/listing/${listing._id}`}>
                 <img
                   src={listing.imageUrls[0]}
@@ -321,6 +323,7 @@ export default function Profile() {
                   className='h-16 w-16 object-contain rounded-lg'
                 />
               </Link>
+              {/* listing name */}
               <Link
                 className='flex-1 text-slate-700 font-semibold hover:underline truncate'
                 to={`/listing/${listing._id}`}
@@ -328,6 +331,7 @@ export default function Profile() {
                 <p>{listing.name}</p>
               </Link>
 
+              {/* edit and delete listing button */}
               <div className='flex flex-col'>
                 <button
                   onClick={() => handleListingDelete(listing._id)}
@@ -335,7 +339,9 @@ export default function Profile() {
                 >
                   Delete
                 </button>
-                <button className='text-green-700'>Edit</button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className='text-green-700'>Edit</button>
+                </Link>
               </div>
             </div>
           ))}
