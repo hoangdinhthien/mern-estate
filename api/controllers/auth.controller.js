@@ -10,7 +10,7 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.status(201).json(`User created !`);
+    res.status(201).json(`User created!`);
   } catch (error) {
     // next(errorHandler(550, `error from the function !`)); => use this when don't have any 'error'
     next(error);
