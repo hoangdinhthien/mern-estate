@@ -64,8 +64,9 @@ export default function CreateListing() {
       setUploading(false);
     }
   };
-
-  // store upload image function
+  // -----submit image function-----
+  //
+  // -----store upload image function-----
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
@@ -91,16 +92,18 @@ export default function CreateListing() {
       );
     });
   };
-
-  // delete image function
+  // -----store upload image function-----
+  //
+  // -----delete image function-----
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
       imageUrls: formData.imageUrls.filter((_, i) => i !== index),
     });
   };
-
-  // change/update data function
+  // -----delete image function-----
+  //
+  // -----change/update data function-----
   const handleChange = (e) => {
     // you can only check 1 checkbox sale or rent, cannot check both
     if (e.target.id === 'sale' || e.target.id === 'rent') {
@@ -110,7 +113,6 @@ export default function CreateListing() {
         type: e.target.id,
       });
     }
-
     // If the checkbox with id="parking" || "furnished" || "offer" is checked or unchecked, formData.parking || formData.furnished || formData.offer will be set to true or false respectively.
     if (
       e.target.id === 'parking' ||
@@ -123,7 +125,6 @@ export default function CreateListing() {
         [e.target.id]: e.target.checked,
       });
     }
-
     // the rest
     if (
       e.target.type === 'number' ||
@@ -137,8 +138,9 @@ export default function CreateListing() {
       });
     }
   };
-
-  // submit form function
+  // -----change/update data function-----
+  //
+  // -----submit form function----
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -175,21 +177,25 @@ export default function CreateListing() {
       setLoading(false);
     }
   };
-
+  // -----submit form function----
+  //
+  // -----render form-----
   return (
     <main className='p-3 max-w-5xl mx-auto'>
-      {/* page title  */}
+      {/* -----page title----- */}
       <h1 className='text-3xl font-semibold text-center my-7 '>
         Create Listing
       </h1>
-      {/* create listing form */}
+      {/* -----page title----- */}
+      {/*  */}
+      {/* -----create listing form----- */}
       <form
         onSubmit={handleSubmit}
         className='flex flex-col sm:flex-row gap-4'
       >
-        {/* left col */}
+        {/* -----left col----- */}
         <div className='flex flex-col gap-4 flex-1'>
-          {/* name input */}
+          {/* -----name input----- */}
           <input
             type='text'
             placeholder='Name'
@@ -201,7 +207,9 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.name}
           />
-          {/* description input */}
+          {/* -----name input----- */}
+          {/*  */}
+          {/* -----description input----- */}
           <textarea
             type='text'
             placeholder='Description'
@@ -211,7 +219,9 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.description}
           />
-          {/* address input */}
+          {/* -----description input----- */}
+          {/*  */}
+          {/* -----address input----- */}
           <input
             type='text'
             placeholder='Address'
@@ -221,7 +231,9 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.address}
           />
-          {/* checkbox wrapper */}
+          {/* -----address input----- */}
+          {/*  */}
+          {/* -----checkbox wrapper----- */}
           <div className='flex gap-6 flex-wrap'>
             {/* sale checkbox  */}
             <div className='flex gap-2'>
@@ -279,10 +291,11 @@ export default function CreateListing() {
               <span>Offer</span>
             </div>
           </div>
+          {/* -----checkbox wrapper----- */}
 
-          {/* number input wrapper */}
+          {/* -----number input wrapper----- */}
           <div className='flex flex-wrap gap-6'>
-            {/* number of beds input */}
+            {/* -----number of beds input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -296,7 +309,9 @@ export default function CreateListing() {
               />
               <p>Beds</p>
             </div>
-            {/* number of bathrooms input */}
+            {/* -----number of beds input----- */}
+            {/*  */}
+            {/* -----number of bathrooms input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -310,7 +325,9 @@ export default function CreateListing() {
               />
               <p>Baths</p>
             </div>
-            {/* regular price input */}
+            {/* -----number of bathrooms input----- */}
+            {/*  */}
+            {/* -----regular price input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -329,9 +346,10 @@ export default function CreateListing() {
                 )}
               </div>
             </div>
-
+            {/* -----regular price input----- */}
+            {/*  */}
+            {/* -----discount price input----- */}
             {formData.offer && (
-              // {/* discount price input */}
               <div className='flex items-center gap-2'>
                 <input
                   type='number'
@@ -351,19 +369,26 @@ export default function CreateListing() {
                 </div>
               </div>
             )}
+            {/* -----discount price input----- */}
           </div>
+          {/* -----number input wrapper----- */}
         </div>
-
-        {/* right col */}
+        {/* -----left col----- */}
+        {/*  */}
+        {/* -----right col----- */}
         <div className='flex flex-col flex-1 gap-4'>
-          {/* image file upload */}
+          {/* -----image file upload notice----- */}
           <p className='font-semibold '>
             Images:
             <span className='font-normal text-grey-600 ml-2'>
               The first image will be the cover (max 6)
             </span>
           </p>
+          {/* -----image file upload notice----- */}
+          {/*  */}
+          {/* -----image file upload choose file wrapper----- */}
           <div className=' flex gap-4'>
+            {/* -----image file upload choose file button----- */}
             <input
               onChange={(e) => setFiles(e.target.files)}
               type='file'
@@ -372,7 +397,9 @@ export default function CreateListing() {
               multiple
               className='p-3 border border-x-gray-300 rounded w-full'
             />
-            {/* image upload button */}
+            {/* -----image file upload choose file button----- */}
+            {/*  */}
+            {/* -----image upload button----- */}
             <button
               type='button'
               disabled={uploading}
@@ -381,21 +408,26 @@ export default function CreateListing() {
             >
               {uploading ? `Uploading...` : `Upload`}
             </button>
+            {/* -----image upload button----- */}
           </div>
-          {/* create listing button */}
+          {/* -----image file upload choose file wrapper----- */}
+          {/*  */}
+          {/* -----create listing button----- */}
           <button
             disabled={loading || uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
             {loading ? 'Creating...' : 'Create Listing'}
           </button>
-
-          {/* show upload image error */}
+          {/* -----create listing button----- */}
+          {/*  */}
+          {/* -----show upload image error----- */}
           <p className='text-red-600 text-sm text-center'>
             {imageUploadError && imageUploadError}
           </p>
-
-          {/* render uploaded image to screen */}
+          {/* -----show upload image error----- */}
+          {/*  */}
+          {/* -----render uploaded image to screen----- */}
           {formData.imageUrls.length > 0 &&
             formData.imageUrls.map((url, index) => (
               <div
@@ -417,10 +449,16 @@ export default function CreateListing() {
                 </button>
               </div>
             ))}
-          {/* show error to upload at least 1 image and error for discount price must be lower than regular price*/}
+          {/* -----render uploaded image to screen----- */}
+          {/*  */}
+          {/* -----show error to upload at least 1 image and error for discount price must be lower than regular price----- */}
           {error && <p className='text-red-700 text-sm text-center'>{error}</p>}
+          {/* -----show error to upload at least 1 image and error for discount price must be lower than regular price----- */}
         </div>
+        {/* -----right col----- */}
       </form>
+      {/* -----create listing form----- */}
     </main>
   );
+  // -----render form-----
 }

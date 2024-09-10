@@ -52,21 +52,25 @@ export default function Listing() {
     fetchListing();
   }, [params.listingId]);
 
-  // UI
+  // -----render UI-----
   return (
     <main>
-      {/* loading effect */}
+      {/* -----loading effect----- */}
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
-      {/* error effect */}
+      {/* -----loading effect----- */}
+      {/*  */}
+      {/* -----error effect----- */}
       {error && (
         <p className='text-center my-7 text-2xl text-red-600'>
           Something went wrong!!!
         </p>
       )}
-      {/* display listing */}
+      {/* -----error effect----- */}
+      {/*  */}
+      {/* -----display listing----- */}
       {listing && !loading && !error && (
         <>
-          {/* image slider */}
+          {/* -----image slider----- */}
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -80,8 +84,9 @@ export default function Listing() {
               </SwiperSlide>
             ))}
           </Swiper>
-
-          {/* share button */}
+          {/* -----image slider----- */}
+          {/*  */}
+          {/* -----share button----- */}
           <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
             <FaShare
               className='text-slate-500'
@@ -94,17 +99,19 @@ export default function Listing() {
               }}
             />
           </div>
-
-          {/* copied effect */}
+          {/* -----share button----- */}
+          {/*  */}
+          {/* -----copied effect----- */}
           {copied && (
             <p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>
               Link copied!
             </p>
           )}
-
-          {/* listing details */}
+          {/* -----copied effect----- */}
+          {/*  */}
+          {/* -----listing details----- */}
           <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
-            {/* name and price */}
+            {/* -----name and price----- */}
             <p className='text-2xl font-semibold'>
               {listing.name} - $
               {listing.offer
@@ -112,56 +119,76 @@ export default function Listing() {
                 : listing.regularPrice.toLocaleString('en-US')}
               {listing.type === 'rent' && ' / month'}
             </p>
-
-            {/* address */}
+            {/* -----name and price----- */}
+            {/*  */}
+            {/* -----address----- */}
             <p className='flex items-center gap-2 mt-6 text-slate-600 text-sm'>
               <FaMapMarkerAlt className='text-green-700' />
               {listing.address}
             </p>
+            {/* -----address----- */}
+            {/*  */}
+            {/* -----type and discount wrapper----- */}
             <div className='flex gap-4'>
-              {/* type */}
+              {/* -----type----- */}
               <p className='bg-red-900 w-full max-w-[200px] text-white text-center rounded-md p-1'>
                 {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
               </p>
-              {/* discount */}
+              {/* -----type----- */}
+              {/* -----discount----- */}
               {listing.offer && (
                 <p className='bg-green-900 w-full max-w-[200px] text-white text-center rounded-md p-1'>
                   ${+listing.regularPrice - +listing.discountPrice}
                 </p>
               )}
+              {/* -----discount----- */}
             </div>
-            {/* description */}
+            {/* -----type and discount wrapper----- */}
+            {/*  */}
+            {/* -----description----- */}
             <p className='text-slate-800 '>
               <span className='text-black font-semibold'>Description - </span>
               {listing.description}
             </p>
-            {/* features */}
+            {/* -----description----- */}
+            {/*  */}
+            {/* -----features----- */}
             <ul className='text-green-900 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
-              {/* bedrooms */}
+              {/* -----bedrooms----- */}
               <li className='flex items-center gap-1 whitespace-nowrap'>
                 <FaBed className='text-lg' />
                 {listing.bedrooms > 1
                   ? `${listing.bedrooms} beds`
                   : `${listing.bedrooms} bed`}
               </li>
-              {/* bathrooms */}
+              {/* -----bedrooms----- */}
+              {/*  */}
+              {/* -----bathrooms----- */}
               <li className='flex items-center gap-1 whitespace-nowrap'>
                 <FaBath className='text-lg' />
                 {listing.bathrooms > 1
                   ? `${listing.bathrooms} baths`
                   : `${listing.bathrooms} bath`}
               </li>
-              {/* parking */}
+              {/* -----bathrooms----- */}
+              {/*  */}
+              {/* -----parking----- */}
               <li className='flex items-center gap-1 whitespace-nowrap'>
                 <FaParking className='text-lg' />
                 {listing.parking ? 'Parking spot' : 'No parking spot'}
               </li>
-              {/* furnished */}
+              {/* -----parking----- */}
+              {/*  */}
+              {/* -----furnished----- */}
               <li className='flex items-center gap-1 whitespace-nowrap'>
                 <FaChair className='text-lg' />
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
+              {/* -----furnished----- */}
             </ul>
+            {/* -----features----- */}
+            {/*  */}
+            {/* -----contact button----- */}
             {/* prevents the listing owner from seeing a button to contact themselves and ensures that only authenticated users can attempt to contact the landlord. */}
             {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
@@ -172,9 +199,13 @@ export default function Listing() {
               </button>
             )}
             {contact && <Contact listing={listing} />}
+            {/* -----contact button----- */}
           </div>
+          {/* -----listing details----- */}
         </>
       )}
+      {/* -----display listing----- */}
     </main>
   );
+  // -----render UI-----
 }

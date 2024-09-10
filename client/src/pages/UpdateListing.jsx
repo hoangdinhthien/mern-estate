@@ -35,6 +35,7 @@ export default function UpdateListing() {
   const [imageUploadError, setImageUploadError] = useState(false);
   const [uploading, setUploading] = useState(false);
 
+  // -----fetch listing data-----
   useEffect(() => {
     const fetchListing = async () => {
       const listingId = params.listingId;
@@ -48,8 +49,9 @@ export default function UpdateListing() {
     };
     fetchListing();
   }, []);
+  // -----fetch listing data-----
 
-  // submit image function
+  // -----submit image function-----
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
@@ -77,8 +79,9 @@ export default function UpdateListing() {
       setUploading(false);
     }
   };
+  // -----submit image function-----
 
-  // store upload image function
+  // -----store upload image function-----
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
@@ -104,16 +107,18 @@ export default function UpdateListing() {
       );
     });
   };
+  // -----store upload image function-----
 
-  // delete image function
+  // -----delete image function-----
   const handleRemoveImage = (index) => {
     setFormData({
       ...formData,
       imageUrls: formData.imageUrls.filter((_, i) => i !== index),
     });
   };
+  // -----delete image function-----
 
-  // change/update data function
+  // -----change/update data function-----
   const handleChange = (e) => {
     // you can only check 1 checkbox sale or rent, cannot check both
     if (e.target.id === 'sale' || e.target.id === 'rent') {
@@ -150,8 +155,9 @@ export default function UpdateListing() {
       });
     }
   };
+  // -----change/update data function-----
 
-  // submit form function
+  // -----submit form function-----
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -188,21 +194,25 @@ export default function UpdateListing() {
       setLoading(false);
     }
   };
+  // -----submit form function-----
 
+  // -----render UI-----
   return (
     <main className='p-3 max-w-5xl mx-auto'>
-      {/* page title  */}
+      {/* -----page title----- */}
       <h1 className='text-3xl font-semibold text-center my-7 '>
         Update Listing
       </h1>
-      {/* create listing form */}
+      {/* -----page title----- */}
+      {/*  */}
+      {/* -----create listing form----- */}
       <form
         onSubmit={handleSubmit}
         className='flex flex-col sm:flex-row gap-4'
       >
-        {/* left col */}
+        {/* -----left col----- */}
         <div className='flex flex-col gap-4 flex-1'>
-          {/* name input */}
+          {/* -----name input----- */}
           <input
             type='text'
             placeholder='Name'
@@ -214,7 +224,9 @@ export default function UpdateListing() {
             onChange={handleChange}
             value={formData.name}
           />
-          {/* description input */}
+          {/* -----name input----- */}
+          {/*  */}
+          {/* -----description input----- */}
           <textarea
             type='text'
             placeholder='Description'
@@ -224,7 +236,9 @@ export default function UpdateListing() {
             onChange={handleChange}
             value={formData.description}
           />
-          {/* address input */}
+          {/* -----description input----- */}
+          {/*  */}
+          {/* -----address input----- */}
           <input
             type='text'
             placeholder='Address'
@@ -234,9 +248,11 @@ export default function UpdateListing() {
             onChange={handleChange}
             value={formData.address}
           />
-          {/* checkbox wrapper */}
+          {/* -----address input----- */}
+          {/*  */}
+          {/* -----checkbox wrapper----- */}
           <div className='flex gap-6 flex-wrap'>
-            {/* sale checkbox  */}
+            {/* -----sale checkbox----- */}
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -247,7 +263,9 @@ export default function UpdateListing() {
               />
               <span>Sale</span>
             </div>
-            {/* rent checkbox  */}
+            {/* -----sale checkbox----- */}
+            {/*  */}
+            {/* -----rent checkbox----- */}
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -258,7 +276,9 @@ export default function UpdateListing() {
               />
               <span>Rent</span>
             </div>
-            {/* parking checkbox */}
+            {/* -----rent checkbox----- */}
+            {/*  */}
+            {/* -----parking checkbox----- */}
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -269,7 +289,9 @@ export default function UpdateListing() {
               />
               <span>Parking spot</span>
             </div>
-            {/* furnished checkbox */}
+            {/* -----parking checkbox----- */}
+            {/*  */}
+            {/* -----furnished checkbox----- */}
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -280,7 +302,9 @@ export default function UpdateListing() {
               />
               <span>Furnished</span>
             </div>
-            {/* offer checkbox */}
+            {/* -----furnished checkbox----- */}
+            {/*  */}
+            {/* -----offer checkbox----- */}
             <div className='flex gap-2'>
               <input
                 type='checkbox'
@@ -291,11 +315,13 @@ export default function UpdateListing() {
               />
               <span>Offer</span>
             </div>
+            {/* -----offer checkbox----- */}
           </div>
-
-          {/* number input wrapper */}
+          {/* -----checkbox wrapper----- */}
+          {/*  */}
+          {/* -----number input wrapper----- */}
           <div className='flex flex-wrap gap-6'>
-            {/* number of beds input */}
+            {/* -----number of beds input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -309,7 +335,9 @@ export default function UpdateListing() {
               />
               <p>Beds</p>
             </div>
-            {/* number of bathrooms input */}
+            {/* -----number of beds input----- */}
+            {/*  */}
+            {/* -----number of bathrooms input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -323,7 +351,9 @@ export default function UpdateListing() {
               />
               <p>Baths</p>
             </div>
-            {/* regular price input */}
+            {/* -----number of bathrooms input----- */}
+            {/*  */}
+            {/* -----regular price input----- */}
             <div className='flex items-center gap-2'>
               <input
                 type='number'
@@ -340,7 +370,9 @@ export default function UpdateListing() {
                 <span className='text-xs'>($ / month)</span>
               </div>
             </div>
-
+            {/* -----regular price input----- */}
+            {/*  */}
+            {/* -----discount price input----- */}
             {formData.offer && (
               // {/* discount price input */}
               <div className='flex items-center gap-2'>
@@ -360,18 +392,22 @@ export default function UpdateListing() {
                 </div>
               </div>
             )}
+            {/* -----discount price input----- */}
           </div>
+          {/* -----number input wrapper----- */}
         </div>
-
-        {/* right col */}
+        {/* -----left col----- */}
+        {/*  */}
+        {/* -----right col----- */}
         <div className='flex flex-col flex-1 gap-4'>
-          {/* image file upload */}
           <p className='font-semibold '>
             Images:
             <span className='font-normal text-grey-600 ml-2'>
               The first image will be the cover (max 6)
             </span>
           </p>
+          {/* -----image file upload----- */}
+
           <div className=' flex gap-4'>
             <input
               onChange={(e) => setFiles(e.target.files)}
@@ -381,7 +417,9 @@ export default function UpdateListing() {
               multiple
               className='p-3 border border-x-gray-300 rounded w-full'
             />
-            {/* image upload button */}
+            {/* -----image file upload----- */}
+            {/*  */}
+            {/* -----image upload button----- */}
             <button
               type='button'
               disabled={uploading}
@@ -390,21 +428,24 @@ export default function UpdateListing() {
             >
               {uploading ? `Uploading...` : `Upload`}
             </button>
+            {/* -----image upload button----- */}
           </div>
-          {/* Update listing button */}
+          {/* -----Update listing button----- */}
           <button
             disabled={loading || uploading}
             className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
           >
             {loading ? 'Updating...' : 'Update Listing'}
           </button>
-
-          {/* show upload image error */}
+          {/* -----Update listing button----- */}
+          {/*  */}
+          {/* -----show upload image error----- */}
           <p className='text-red-600 text-sm text-center'>
             {imageUploadError && imageUploadError}
           </p>
-
-          {/* render uploaded image to screen */}
+          {/* -----show upload image error----- */}
+          {/*  */}
+          {/* -----render uploaded image to screen----- */}
           {formData.imageUrls.length > 0 &&
             formData.imageUrls.map((url, index) => (
               <div
@@ -426,10 +467,16 @@ export default function UpdateListing() {
                 </button>
               </div>
             ))}
-          {/* show error to upload at least 1 image and error for discount price must be lower than regular price*/}
+          {/* -----render uploaded image to screen----- */}
+          {/*  */}
+          {/* -----show error to upload at least 1 image and error for discount price must be lower than regular price----- */}
           {error && <p className='text-red-700 text-sm text-center'>{error}</p>}
+          {/* -----show error to upload at least 1 image and error for discount price must be lower than regular price----- */}
         </div>
+        {/* -----right col----- */}
       </form>
+      {/* -----create listing form----- */}
     </main>
   );
+  // -----render UI-----
 }

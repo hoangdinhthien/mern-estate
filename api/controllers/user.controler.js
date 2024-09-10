@@ -9,6 +9,7 @@ export const test = (req, res) => {
   });
 };
 
+// -----update user function-----
 export const updateUser = async (req, res, next) => {
   // check if the person is authenticated or not
   // use the cookie to verify the user
@@ -40,7 +41,9 @@ export const updateUser = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----update user function-----
+//
+// -----delete user function-----
 export const deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id)
     return next(errorHandler(401, 'You can only delete your own account!!!'));
@@ -53,7 +56,9 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----delete user function-----
+//
+// -----get user listing function-----
 export const getUserListing = async (req, res, next) => {
   if (req.user.id === req.params.id) {
     try {
@@ -66,7 +71,9 @@ export const getUserListing = async (req, res, next) => {
     return next(errorHandler(401, 'You can only view your own listing!!!'));
   }
 };
-
+// -----get user listing function-----
+//
+// -----get user function-----
 export const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);

@@ -23,7 +23,7 @@ export default function SignIn() {
     });
   };
 
-  // submit form function || fetch api
+  // -----submit form function || fetch api-----
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -48,7 +48,9 @@ export default function SignIn() {
 
     console.log(data);
   };
+  // -----submit form function || fetch api-----
 
+  // -----render UI-----
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
@@ -57,7 +59,7 @@ export default function SignIn() {
         onSubmit={handleSubmit}
         className='flex flex-col gap-4'
       >
-        {/* email input */}
+        {/* -----email input----- */}
         <input
           type='email'
           placeholder='Email'
@@ -65,7 +67,9 @@ export default function SignIn() {
           id='email'
           onChange={handleChange}
         />
-        {/* password input  */}
+        {/* -----email input----- */}
+        {/*  */}
+        {/* -----password input----- */}
         <input
           type='password'
           placeholder='Password'
@@ -73,27 +77,35 @@ export default function SignIn() {
           id='password'
           onChange={handleChange}
         />
-        {/* sign in button */}
+        {/* -----password input----- */}
+        {/*  */}
+        {/* -----sign in button----- */}
         <button
           disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
-        {/* sign in with google button|link */}
+        {/* -----sign in button----- */}
+        {/*  */}
+        {/* -----sign in with google button|link----- */}
         <OAuth />
+        {/* -----sign in with google button|link----- */}
       </form>
 
-      {/* don't have account and sign up button wrapper */}
+      {/* -----don't have account and sign up button wrapper----- */}
       <div className='flex gap-2 mt-5'>
         <p className=''>Don&apos;t have an account?</p>
         <Link to={'/sign-up'}>
           <span className='text-blue-700'>Sign Up</span>
         </Link>
       </div>
-
-      {/* show error */}
+      {/* -----don't have account and sign up button wrapper----- */}
+      {/*  */}
+      {/* -----show error----- */}
       {error && <p className='text-red-500 mt-5 text-center'>{error}</p>}
+      {/* -----show error----- */}
     </div>
   );
+  // -----render UI-----
 }
