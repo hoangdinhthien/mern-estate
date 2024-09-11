@@ -4,16 +4,20 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import persistStore from 'redux-persist/es/persistStore';
 
+// ----- REDUCERS -----
 const rootReducer = combineReducers({ user: userReducer });
 
+// ----- PERSIST CONFIG -----
 const persistConfig = {
   key: 'root',
   storage,
   version: 1,
 };
 
+// ----- PERSISTED REDUCER -----
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// ----- STORE -----
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>

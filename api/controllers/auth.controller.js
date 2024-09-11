@@ -18,7 +18,7 @@ export const signup = async (req, res, next) => {
   }
 };
 // -----signup function-----
-
+//
 // -----signin function-----
 export const signin = async (req, res, next) => {
   // get the data from the req.body
@@ -39,7 +39,7 @@ export const signin = async (req, res, next) => {
   }
 };
 // -----signin function-----
-
+//
 // -----google sign in function-----
 export const google = async (req, res, next) => {
   try {
@@ -77,7 +77,7 @@ export const google = async (req, res, next) => {
   }
 };
 // -----google sign in function-----
-
+//
 // -----signout function-----
 export const signout = async (req, res, next) => {
   // clear cookie

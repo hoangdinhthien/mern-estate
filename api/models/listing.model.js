@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
+// ----- SCHEMA -----
 const listingSchema = new mongoose.Schema(
+  // ----- LISTING SCHEMA -----
   {
     name: {
       type: String,
@@ -58,6 +60,7 @@ const listingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// ----- MODEL -----
 const Listing = mongoose.model('Listing', listingSchema);
 
 export default Listing;

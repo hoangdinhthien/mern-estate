@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
+// ----- SCHEMA -----
 const userSchema = new mongoose.Schema(
+  // ----- USER SCHEMA -----
   {
     username: {
       type: String,
@@ -25,6 +27,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true } // => record two important extra information
 );
 
+// ----- MODEL -----
 const User = mongoose.model('User', userSchema);
 
 export default User;
