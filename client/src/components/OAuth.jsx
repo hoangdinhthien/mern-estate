@@ -8,6 +8,7 @@ export default function OAuth() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // -----google sign in function-----
   const handleGoogleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -34,8 +35,11 @@ export default function OAuth() {
       console.error(`COULD NOT SIGN IN WITH GOOGLE`, error);
     }
   };
+  // -----google sign in function-----
 
+  // -----render UI-----
   return (
+    // -----google sign in button-----
     <button
       type='button'
       onClick={handleGoogleClick}
@@ -43,5 +47,7 @@ export default function OAuth() {
     >
       Continue with Google
     </button>
+    // -----google sign in button-----
   );
+  // -----render UI-----
 }

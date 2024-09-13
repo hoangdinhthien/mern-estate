@@ -1,6 +1,7 @@
 import Listing from '../models/listing.model.js';
 import { errorHandler } from '../utils/error.js';
 
+// -----create listing function-----
 export const createListing = async (req, res, next) => {
   try {
     const listing = await Listing.create(req.body);
@@ -9,7 +10,9 @@ export const createListing = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----create listing function-----
+//
+// -----delete listing function-----
 export const deleteListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);
   if (!listing) {
@@ -27,7 +30,9 @@ export const deleteListing = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----delete listing function-----
+//
+// -----update listing function-----
 export const updateListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);
   if (!listing) {
@@ -48,7 +53,9 @@ export const updateListing = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----update listing function-----
+//
+// -----get listing function-----
 export const getListing = async (req, res, next) => {
   try {
     const listing = await Listing.findById(req.params.id);
@@ -60,8 +67,9 @@ export const getListing = async (req, res, next) => {
     next(error);
   }
 };
-
-// search route
+// -----get listing function-----
+//
+// -----search route-----
 export const getListings = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 9;
@@ -113,3 +121,4 @@ export const getListings = async (req, res, next) => {
     next(error);
   }
 };
+// -----search route-----

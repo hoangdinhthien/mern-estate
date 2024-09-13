@@ -1,4 +1,4 @@
-// function to handle possible errors
+// -----function to handle possible errors-----
 export const errorHandler = (statusCode, message) => {
   const error = new Error();
   error.statusCode = statusCode;

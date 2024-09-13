@@ -9,6 +9,7 @@ export default function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
+  // -----search submit function-----
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,7 +18,9 @@ export default function Header() {
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
   };
+  // -----search submit function-----
 
+  // -----search term from url-----
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchTermFromUrl = urlParams.get('searchTerm');
@@ -26,7 +29,9 @@ export default function Header() {
       setSearchTerm(searchTermFromUrl);
     }
   }, [location.search]);
+  // -----search term from url-----
 
+  // -----render UI-----
   return (
     <header className='bg-slate-200 shadow-md'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
@@ -85,4 +90,5 @@ export default function Header() {
       </div>
     </header>
   );
+  // -----render UI-----
 }

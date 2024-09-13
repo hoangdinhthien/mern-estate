@@ -22,6 +22,7 @@ export default function Contact({ listing }) {
     fetchLandLord();
   }, [listing.userRef]);
 
+  // -----render UI-----
   return (
     <>
       {landLord && (
@@ -31,7 +32,7 @@ export default function Contact({ listing }) {
             for{' '}
             <span className='font-semibold'>{listing.name.toLowerCase()} </span>
           </p>
-
+          {/* -----message input----- */}
           <textarea
             name='message'
             id='message'
@@ -41,14 +42,19 @@ export default function Contact({ listing }) {
             placeholder='Enter your message here...'
             className='w-full  border p-3 rounded-lg'
           />
+          {/* -----message input----- */}
+          {/*  */}
+          {/* -----send message button----- */}
           <Link
             to={`mailto:${landLord.email}?subject=Regarding ${listing.name}&body=${message}`}
             className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-80 p-3 text-center'
           >
             Send Message
           </Link>
+          {/* -----send message button----- */}
         </div>
       )}
     </>
   );
+  // -----render UI-----
 }

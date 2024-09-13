@@ -3,6 +3,7 @@ import bcryptjs from 'bcryptjs';
 import { errorHandler } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
+// -----signup function-----
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
   const hashedPassword = bcryptjs.hashSync(password, 10);
@@ -16,7 +17,9 @@ export const signup = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----signup function-----
+//
+// -----signin function-----
 export const signin = async (req, res, next) => {
   // get the data from the req.body
   const { email, password } = req.body;
@@ -35,7 +38,9 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----signin function-----
+//
+// -----google sign in function-----
 export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -71,7 +76,9 @@ export const google = async (req, res, next) => {
     next(error);
   }
 };
-
+// -----google sign in function-----
+//
+// -----signout function-----
 export const signout = async (req, res, next) => {
   // clear cookie
   try {
@@ -81,3 +88,4 @@ export const signout = async (req, res, next) => {
     next(error);
   }
 };
+// -----signout function-----

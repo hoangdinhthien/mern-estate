@@ -1,16 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// ----- INITIAL STATE -----
 const initialState = {
   currentUser: null,
   error: null,
   loading: false,
 };
-
+// ----- INITIAL STATE -----
+//
+// ----- SLICE -----
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // sign in
+    // ----- SIGN IN -----
     signInStart: (state) => {
       state.loading = true;
     },
@@ -23,8 +26,9 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
-
-    // update user
+    // ----- SIGN IN -----
+    //
+    // ----- UPDATE USER -----
     updateUserStart: (state) => {
       state.loading = true;
     },
@@ -37,8 +41,9 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
-
-    // delete user
+    // ----- UPDATE USER -----
+    //
+    // ----- DELETE USER -----
     deleteUserStart: (state) => {
       state.loading = true;
     },
@@ -51,8 +56,9 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
-
-    // sign out user
+    // ----- DELETE USER -----
+    //
+    // ----- SIGN OUT USER -----
     signOutUserStart: (state) => {
       state.loading = true;
     },
@@ -65,8 +71,10 @@ export const userSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
+    // ----- SIGN OUT USER -----
   },
 });
+// ----- SLICE -----
 
 // Action creators are generated for each case reducer function
 export const {
