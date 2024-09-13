@@ -44,14 +44,17 @@ export default function App() {
 
           {/* -----Private Routes (only when signed in)----- */}
           <Route element={<PrivateRoute />}>
+            {/* -----Profile Page----- */}
             <Route
               path='/profile'
               element={<Profile />}
             />
+            {/* -----Create Listing Page----- */}
             <Route
               path='/create-listing'
               element={<CreateListing />}
             />
+            {/* -----Update Listing Page----- */}
             <Route
               path='/update-listing/:listingId'
               element={<UpdateListing />}
