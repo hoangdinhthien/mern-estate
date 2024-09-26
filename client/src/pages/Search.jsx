@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ListingItem from '../components/ListingItem';
 
 export default function Search() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Search() {
 
   const [loading, setLoading] = useState(false);
   const [listings, setListings] = useState([]);
+  console.log(listings);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -36,7 +38,7 @@ export default function Search() {
       orderFromUrl
     ) {
       setSidebarData({
-        searchTerm: searchTermFromUrl || 'all',
+        searchTerm: searchTermFromUrl || '',
         type: typeFromUrl || 'all',
         parking: parkingFromUrl === 'true' ? true : false,
         furnished: furnishedFromUrl === 'true' ? true : false,
@@ -50,6 +52,9 @@ export default function Search() {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/listing/get?${searchQuery}`);
+      const data = await res.json();
+      setListings(data);
+      setLoading(false);
     };
 
     fetchListing();
@@ -227,8 +232,8 @@ export default function Search() {
             >
               <option value='regularPrice_desc'>Price High to Low</option>
               <option value='regularPrice_asc'>Price Low to High</option>
-              <option value='created_at_desc'>Latest</option>
-              <option value='created_at_asc'>Oldest</option>
+              <option value='createdAt_desc'>Latest</option>
+              <option value='createdAt_asc'>Oldest</option>
             </select>
           </div>
           {/* -----Search sort----- */}
@@ -243,10 +248,34 @@ export default function Search() {
       {/* -----Left side----- */}
       {/*  */}
       {/* -----Right side----- */}
-      <div className=''>
+      <div className='flex-1'>
         <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
           Listing results:
         </h1>
+        {/* -----Listing items----- */}
+        <div className='p-7 flex flex-wrap gap-4'>
+          {!loading && listings.length === 0 && (
+            <p className='text-xl text-slate-700 text-center w-full'>
+              No Listing Found!
+            </p>
+          )}
+          {loading && (
+            <p className='text-xl text-slate-700 text-center w-full'>
+              Loading...
+            </p>
+          )}
+
+          {/* check if listings is not empty */}
+          {!loading &&
+            listings &&
+            listings.map((listing) => (
+              <ListingItem
+                key={listing._id}
+                listing={listing}
+              />
+            ))}
+        </div>
+        {/* -----Listing items----- */}
       </div>
       {/* -----Right side----- */}
     </div>
