@@ -5,6 +5,7 @@ import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 
 // ----- CONFIGURATION -----
 dotenv.config();
@@ -18,6 +19,9 @@ mongoose
   .catch((err) => {
     console.error(err);
   });
+
+// DYNAMIC DIRECTORY NAME
+const _dirname = path.resolve();
 
 // ----- SERVER -----
 const app = express();
@@ -35,6 +39,13 @@ app.listen(3000, () => {
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
+
+// ----- SERVE STATIC FILES -----
+app.use(express.static(path.join(_dirname, '/client/dist')));
+
+app.get(`*`, (req, res) => {
+  res.sendFile(path.join(_dirname, `client`, `dist`, `index.html`));
+});
 
 // ----- ERROR HANDLER -----
 app.use((err, req, res, next) => {
