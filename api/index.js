@@ -21,7 +21,7 @@ mongoose
   });
 
 // DYNAMIC DIRECTORY NAME
-const _dirname = path.resolve();
+const __dirname = path.resolve();
 
 // ----- SERVER -----
 const app = express();
@@ -41,10 +41,10 @@ app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
 // ----- SERVE STATIC FILES -----
-app.use(express.static(path.join(_dirname, '/client/dist')));
+app.use(express.static(path.join(__dirname, '/client/dist')));
 
-app.get(`*`, (req, res) => {
-  res.sendFile(path.join(_dirname, `client`, `dist`, `index.html`));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
 // ----- ERROR HANDLER -----
